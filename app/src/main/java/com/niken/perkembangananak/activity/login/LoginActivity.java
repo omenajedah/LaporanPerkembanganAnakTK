@@ -10,13 +10,14 @@ import com.niken.perkembangananak.BR;
 import com.niken.perkembangananak.R;
 import com.niken.perkembangananak.activity.home.HomeActivity;
 import com.niken.perkembangananak.base.BaseActivity;
+import com.niken.perkembangananak.base.OnExecuteListener;
 import com.niken.perkembangananak.databinding.ActivityLoginBinding;
 
 /**
  * Created by Firman on 12/15/2018.
  */
 public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewModel>
-        implements LoginViewModel.LoginListener {
+        implements OnExecuteListener<Boolean> {
 
     private LoginViewModel viewModel;
 
@@ -26,15 +27,19 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
 
     @Override
-    public void onLoginSuccess() {
-        HomeActivity.startThisActivity(this);
-        finish();
+    public void onExecuted(Boolean result) {
+        if (result) {
+            HomeActivity.startThisActivity(this);
+            finish();
+        } else {
+            Toast.makeText(this, "Username atau password salah", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
-    public void onLoginFailed() {
-        Toast.makeText(this, "Login gagal, silahkan coba lagi", Toast.LENGTH_SHORT).show();
-
+    public void onError(Throwable throwable) {
+        Toast.makeText(this, "Gagal pada saat login.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -59,6 +64,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(getBinding().toolbar);
+//        getBinding().getRoot().setBackgroundColor(getColor(R.color.colorPrimary));
         if (viewModel.getSessionHandler().isLogin()) {
             overridePendingTransition(0,0);
             HomeActivity.startThisActivity(this);

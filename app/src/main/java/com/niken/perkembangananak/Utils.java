@@ -7,10 +7,8 @@ import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -81,6 +79,18 @@ public class Utils {
             return "A/N";
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern, Locale.getDefault());
         return dateFormat.format(source);
+    }
+
+    public static String reformatDate(String source, String patternSource, String patternResult) {
+        if (source == null)
+            return "A/N";
+        Date date = null;
+        try {
+            date = parseDate(source, patternSource);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return formatDate(date, patternResult);
     }
 
     public static int getConnectionStatus(Context context) {

@@ -1,13 +1,12 @@
-package com.niken.perkembangananak.fragment.hasil;
+package com.niken.perkembangananak.fragment.jadwal;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 
 import com.niken.perkembangananak.Constant;
 import com.niken.perkembangananak.base.BaseViewModel;
 import com.niken.perkembangananak.base.OnExecuteListener;
-import com.niken.perkembangananak.model.HasilKegiatan;
+import com.niken.perkembangananak.model.Jadwal;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import org.json.JSONArray;
@@ -22,12 +21,11 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by Firman on 4/17/2019.
  */
-public class HasilViewModel extends BaseViewModel {
+public class JadwalViewModel extends BaseViewModel {
 
+    private final OnExecuteListener<List<Jadwal>> listener;
 
-    private final OnExecuteListener<List<HasilKegiatan>> listener;
-
-    public HasilViewModel(Context context, OnExecuteListener<List<HasilKegiatan>> listener) {
+    public JadwalViewModel(Context context, OnExecuteListener<List<Jadwal>> listener) {
         super(context);
         this.listener = listener;
     }
@@ -36,9 +34,9 @@ public class HasilViewModel extends BaseViewModel {
     public void refresh() {
         getCompositeDisposable().clear();
         getCompositeDisposable().add(
-                getJadwals().subscribe(kegiatans -> {
-                    Log.d(getClass().getSimpleName(), "size = "+kegiatans.size());
-                    listener.onExecuted(kegiatans);
+                getJadwals().subscribe(jadwals -> {
+                    Log.d(getClass().getSimpleName(), "size = "+jadwals.size());
+                    listener.onExecuted(jadwals);
                 }, throwable -> {
                     listener.onError(throwable);
                 })
@@ -46,17 +44,17 @@ public class HasilViewModel extends BaseViewModel {
     }
 
 
-    private Observable<List<HasilKegiatan>> getJadwals() {
-        return Rx2AndroidNetworking.post(Constant.URL_HASIL_KEGIATAN)
+    private Observable<List<Jadwal>> getJadwals() {
+        return Rx2AndroidNetworking.post(Constant.URL_JADWAL)
                 .build()
                 .getJSONObjectObservable()
                 .map(jsonObject -> {
                     JSONArray array = jsonObject.getJSONArray("DataRow");
-                    List<HasilKegiatan> kegiatans = new ArrayList<>();
+                    List<Jadwal> jadwals = new ArrayList<>();
                     for (int i = 0; i < array.length(); i++) {
-                        kegiatans.add(HasilKegiatan.fromJson(array.getJSONObject(i)));
+                        jadwals.add(Jadwal.fromJson(array.getJSONObject(i)));
                     }
-                    return kegiatans;
+                    return jadwals;
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

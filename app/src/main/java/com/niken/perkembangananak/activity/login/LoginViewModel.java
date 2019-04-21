@@ -7,6 +7,7 @@ import androidx.databinding.ObservableField;
 import com.niken.perkembangananak.Constant;
 import com.niken.perkembangananak.activity.register.RegisterActivity;
 import com.niken.perkembangananak.base.BaseViewModel;
+import com.niken.perkembangananak.base.OnExecuteListener;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import org.json.JSONObject;
@@ -21,11 +22,11 @@ import io.reactivex.schedulers.Schedulers;
 public class LoginViewModel extends BaseViewModel {
 
 
-    private final LoginListener loginListener;
+    private final OnExecuteListener<Boolean> loginListener;
     private ObservableField<String> username = new ObservableField<>();
     private ObservableField<String> password = new ObservableField<>();
 
-    public LoginViewModel(Context context, LoginListener loginListener) {
+    public LoginViewModel(Context context, OnExecuteListener<Boolean> loginListener) {
         super(context);
         this.loginListener = loginListener;
     }
@@ -57,11 +58,11 @@ public class LoginViewModel extends BaseViewModel {
                 doLogin(username.get(), password.get())
                         .subscribe(aBoolean -> {
                             if (aBoolean)
-                                loginListener.onLoginSuccess();
+                                loginListener.onExecuted(true);
                             else
-                                loginListener.onLoginFailed();
+                                loginListener.onExecuted(false);
                         }, throwable -> {
-                            loginListener.onLoginFailed();
+                            loginListener.onError(throwable);
                         })
         );
     }
@@ -76,7 +77,7 @@ public class LoginViewModel extends BaseViewModel {
                 .map(jsonObject -> {
                     if (jsonObject.optBoolean("success")) {
                         JSONObject profile = jsonObject.getJSONObject("profile");
-                        getSessionHandler().login(profile.optString("C_ID"),
+                        getSessionHandler().login(profile.optString("C_USER"),
                                 profile.optString("C_LOGIN"),
                                 profile.optString("V_PASSWORD"),
                                 profile.optString("V_NAMA"),
@@ -87,11 +88,5 @@ public class LoginViewModel extends BaseViewModel {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
-    }
-
-    public interface LoginListener {
-        void onLoginSuccess();
-
-        void onLoginFailed();
     }
 }

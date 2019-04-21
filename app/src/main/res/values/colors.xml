@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#7E57C2</color>
+    <color name="colorPrimary">#673AB7</color>
     <color name="colorPrimaryDark">#6A1B9A</color>
     <color name="colorAccent">#00ACC1</color>
 
 
-    <color name="nav_item_active">#26282B</color>
-    <color name="nav_item_checked">@color/colorPrimary</color>
-    <color name="nav_item_disabled">#7A26282B</color>
+    <color name="nav_item_active">#848485</color>
+    <color name="nav_item_checked">@color/colorAccent</color>
+    <color name="nav_item_disabled">#7A848485</color>
 
 </resources>

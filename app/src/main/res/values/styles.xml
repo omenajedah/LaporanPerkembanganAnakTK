@@ -6,19 +6,32 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowTitleStyle">@android:color/white</item>
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox</item>
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
-    </style>
-
-    <style name="AppTheme.PopupOverlay" parent="Widget.MaterialComponents.Toolbar">
 
     </style>
+
+    <style name="AppTheme.Login" parent="AppTheme.NoActionBar">
+        <item name="android:background">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="Theme.MaterialComponents.Light">
+
+    </style>
+    
+    <style name="AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+    </style>
+
 
     <style name="AppTheme.Toolbar" parent="AppTheme.NoActionBar">
         <item name="android:textColorPrimary">@android:color/white</item>
@@ -39,6 +52,9 @@
              overflow icon (three vertical dots) -->
         <item name="android:textColorSecondary">@android:color/white</item>
 
+    </style>
+
+    <style name="AppTheme.Spinner" parent="Widget.AppCompat.Spinner.DropDown">
     </style>
 
 </resources>

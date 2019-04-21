@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/menu_jadwal"
+        android:icon="@drawable/ic_schedule_24"
+        android:title="Jadwal" />
+    <item
+        android:id="@+id/menu_hasil"
+        android:icon="@drawable/ic_school_24"
+        android:title="Nilai" />
+    <item
+        android:id="@+id/menu_kelas"
+        android:icon="@drawable/ic_class_24"
+        android:title="Kelas" />
+    <item
+        android:id="@+id/menu_wali"
+        android:icon="@drawable/ic_addperson_24"
+        android:title="Master Data" />
+    <item
+        android:id="@+id/menu_account"
+        android:icon="@drawable/ic_person_24"
+        android:title="Akun" />
 </menu>

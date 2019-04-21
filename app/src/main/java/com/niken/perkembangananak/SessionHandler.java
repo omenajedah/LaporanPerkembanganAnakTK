@@ -2,7 +2,6 @@ package com.niken.perkembangananak;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import java.lang.ref.WeakReference;
 import java.util.HashSet;
@@ -13,15 +12,21 @@ import java.util.Set;
  */
 public class SessionHandler implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private final String fileName;
     private final WeakReference<Context> context;
     private final SharedPreferences preference;
     private final Set<SessionChangeListener> changeListeners = new HashSet<>();
 
 
     public SessionHandler(Context context) {
+        this(context, context.getApplicationContext().getPackageName());
+    }
+
+    public SessionHandler(Context context, String name) {
         this.context = new WeakReference<>(context);
-        this.preference = PreferenceManager.getDefaultSharedPreferences(context);
+        this.preference = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         this.preference.registerOnSharedPreferenceChangeListener(this);
+        this.fileName = name;
     }
 
     public void registerSessionChangeListener(SessionChangeListener listener) {
@@ -41,19 +46,18 @@ public class SessionHandler implements SharedPreferences.OnSharedPreferenceChang
 
     public void login(String c_id, String c_login, String v_password, String v_nama, String v_alamat, int c_group) {
         put(Constant.KEY_ISLOGIN, true);
-        putString(Constant.KEY_CID, c_id);
+        putString(Constant.KEY_CUSER, c_id);
         putString(Constant.KEY_LOGIN, c_login);
         putString(Constant.KEY_PASSWORD, v_password);
         putString(Constant.KEY_NAMA, v_nama);
         putString(Constant.KEY_ALAMAT, v_alamat);
         put(Constant.KEY_GROUP, c_group);
-
-
     }
-    public void login(String username, String password, String fullname) {
-        putString("user_name", username);
-        putString("user_pass", password);
-        putString("user_fullname", fullname);
+
+
+    public void logout() {
+        put(Constant.KEY_ISLOGIN, false);
+        clear();
     }
 
     public boolean isLogin() {
@@ -120,6 +124,12 @@ public class SessionHandler implements SharedPreferences.OnSharedPreferenceChang
 
     public Set<String> get(String key, Set<String> defaultValue) {
         return preference.getStringSet(key, defaultValue);
+    }
+
+    public Object get(String key, Object value) {
+        Object o = preference.getAll().get(key);
+
+        return o != null ? o : value;
     }
 
     public void remove(String key) {
