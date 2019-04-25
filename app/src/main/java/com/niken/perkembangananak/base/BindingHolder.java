@@ -6,76 +6,57 @@ import android.graphics.Bitmap;
 import androidx.annotation.IdRes;
 import androidx.annotation.IntegerRes;
 import androidx.annotation.Nullable;
+import androidx.databinding.InverseBindingAdapter;
 
 import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.niken.perkembangananak.Utils;
+
+import java.text.ParseException;
+import java.util.Date;
+
 public class BindingHolder {
 
-    @BindingAdapter("android:onAutoCompleteItemClick")
-    public static void onAutoCompleteItemClick(AutoCompleteTextView textView, AdapterView.OnItemClickListener listener) {
-        textView.setOnItemClickListener(listener);
+    @BindingAdapter("keyListener")
+    public static void setOnKeyListener(View view, View.OnKeyListener keyListener) {
+        view.setOnKeyListener(keyListener);
     }
 
-    @BindingAdapter("autoCompleteAdapter")
-    public static void setAutoCompleteAdapter(AutoCompleteTextView textView, ArrayAdapter arrayAdapter) {
-        textView.setAdapter(arrayAdapter);
+    @InverseBindingAdapter(attribute ="dateFromText", event ="onTextChanged")
+    public static Date getDateFromText(EditText editText) {
+        Date date = null;
+        try {
+            date = Utils.parseDate(editText.getText().toString(), "dd MMMM yyyy");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
-    @BindingAdapter("spinnerAdapter")
-    public static void setAdapter(Spinner spinner, ArrayAdapter adapter) {
-        spinner.setAdapter(adapter);
-    }
-
-    @BindingAdapter("setItemClick")
-    public static void setItemClick(AdapterView adapterView,
-                                    AdapterView.OnItemClickListener onItemClickListener) {
-        adapterView.setOnItemClickListener(onItemClickListener);
-    }
-
-    @BindingAdapter("setItemLongClick")
-    public static void setItemLongClick(AdapterView adapterView,
-                                        AdapterView.OnItemLongClickListener onItemLongClickListener) {
-        adapterView.setOnItemLongClickListener(onItemLongClickListener);
-    }
-
-    @BindingAdapter("setItemSelect")
-    public static void setItemSelect(AdapterView adapterView,
-                                     AdapterView.OnItemSelectedListener onItemSelectedListener) {
-        adapterView.setOnItemSelectedListener(onItemSelectedListener);
-    }
-
-    @BindingAdapter("check")
-    public static void checkRadio(RadioGroup radioGroup, @IdRes int id) {
-        radioGroup.check(id);
-    }
-
-    @BindingAdapter("selectItem")
-    public static void selectItem(Spinner spinner, int pos) {
-        spinner.setSelection(pos, true);
-        spinner.invalidate();
-    }
-
-    @BindingAdapter("setImageBitmap")
-    public static void setImage(ImageView image, @Nullable Bitmap bitmap) {
-        if (bitmap != null)
-            image.setImageBitmap(bitmap);
-    }
-
-    @BindingAdapter("htmlData")
-    public static void setHtmlData(WebView webView, String html) {
-        if (html == null)
-            html = "-";
-
-        if (html.trim().equals("null") || TextUtils.isEmpty(html))
-            html = "-";
-
-        webView.loadData(html, "text/html", "UTF-8");
+    @BindingAdapter("endDrawableClick")
+    public static void setOnCompoundDrawableClickListener(EditText view,
+                                                          View.OnClickListener listener) {
+        view.setOnTouchListener((v, event) -> {
+            boolean hasConsumed = false;
+            if (v instanceof EditText) {
+                if (event.getRawX() >= v.getRight() - view.getCompoundDrawablesRelative()[2].getBounds().width()) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        listener.onClick(v);
+                    }
+                    hasConsumed = true;
+                }
+            }
+            return hasConsumed;
+        });
     }
 }

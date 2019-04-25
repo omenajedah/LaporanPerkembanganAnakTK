@@ -48,7 +48,7 @@ public class HomeViewModel extends BaseViewModel {
 
     public void onLogoutClick() {
         getSessionHandler().clear();
-        LoginActivity.startThisActivity(getContext());
+        LoginActivity.start(getContext());
         listener.onLogout();
 
     }

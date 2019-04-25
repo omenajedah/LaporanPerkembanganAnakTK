@@ -12,7 +12,7 @@
             type="com.niken.perkembangananak.model.HasilKegiatan" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,5 +120,5 @@
                 tools:text="Siswa Hadir 1 dari 20 siswa." />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </layout>

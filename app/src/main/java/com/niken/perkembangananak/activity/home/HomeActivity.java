@@ -28,7 +28,7 @@ public class HomeActivity extends BaseAccessActivity<ActivityHomeBinding, HomeVi
 
     private HomeViewModel viewModel;
 
-    public static void startThisActivity(Context context) {
+    public static void start(Context context) {
         context.startActivity(new Intent(context, HomeActivity.class));
     }
 

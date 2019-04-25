@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/menu_jadwal"
-        android:icon="@drawable/ic_schedule_24"
+        android:icon="@drawable/ic_schedule_28"
         android:title="Jadwal" />
     <item
         android:id="@+id/menu_hasil"

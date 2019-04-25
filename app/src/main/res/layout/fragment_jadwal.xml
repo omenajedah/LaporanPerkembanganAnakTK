@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
+            android:onClick="@{vm::buatJadwal}"
             android:src="@drawable/ic_add_box_24"
             android:tint="@android:color/white" />
 

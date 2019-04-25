@@ -9,7 +9,7 @@
             type="com.niken.perkembangananak.model.Wali" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,5 +106,5 @@
                 app:layout_constraintTop_toTopOf="@+id/textView3"
                 tools:text="11 September 2012" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </layout>

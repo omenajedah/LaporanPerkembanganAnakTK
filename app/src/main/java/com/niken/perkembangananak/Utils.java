@@ -10,6 +10,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.Nullable;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -23,6 +25,12 @@ import java.util.Locale;
  * Created by Firman on 12/15/2018.
  */
 public class Utils {
+
+    public static final int TYPE_UNKNOWN = -1;
+    public static final int TYPE_NOT_CONNECTED = 0;
+    public static final int TYPE_WIFI = 1;
+    public static final int TYPE_MOBILE = 2;
+    public static final int TYPE_BLUETOOTH = 3;
 
     public static int dayOfWeek(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -93,6 +101,10 @@ public class Utils {
         return formatDate(date, patternResult);
     }
 
+    public static String addZeroTime(int time) {
+        return time > 9 ? String.valueOf(time) : "0" + time;
+    }
+
     public static int getConnectionStatus(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -109,12 +121,6 @@ public class Utils {
         }
         return TYPE_NOT_CONNECTED;
     }
-
-    public static final int TYPE_UNKNOWN = -1;
-    public static final int TYPE_NOT_CONNECTED = 0;
-    public static final int TYPE_WIFI = 1;
-    public static final int TYPE_MOBILE = 2;
-    public static final int TYPE_BLUETOOTH = 3;
 
     public static boolean isNetworkConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

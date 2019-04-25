@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.login.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_login">
+
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:label="@string/title_login"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,9 +26,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.register.RegisterActivity"/>
-        <activity android:name=".activity.home.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.register.RegisterActivity" />
+
+        <activity
+            android:name=".activity.home.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activity.buatjadwal.BuatJadwalActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activity.home.HomeActivity"/>
     </application>
 
 </manifest>

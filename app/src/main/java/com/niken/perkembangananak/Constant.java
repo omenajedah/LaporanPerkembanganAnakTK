@@ -15,11 +15,12 @@ public class Constant {
     public static final String KEY_COOKIES = "COOKIES";
 
     //END POINT
-    private static final String URL = "http://192.168.1.7/perkembangananak";
+    private static final String URL = "http://192.168.1.3/perkembangananak";
 
     public static final String URL_LOGIN = URL + "/login";
     public static final String URL_REGISTRASI = URL + "/registrasi";
 
+    public static final String URL_GURU = URL + "/guru";
     public static final String URL_WALI = URL + "/userwali";
     public static final String URL_JADWAL = URL + "/jadwal";
     public static final String URL_KELAS = URL + "/kelas";

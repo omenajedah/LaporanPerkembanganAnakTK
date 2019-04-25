@@ -2,8 +2,10 @@ package com.niken.perkembangananak.fragment.jadwal;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 import com.niken.perkembangananak.Constant;
+import com.niken.perkembangananak.activity.buatjadwal.BuatJadwalActivity;
 import com.niken.perkembangananak.base.BaseViewModel;
 import com.niken.perkembangananak.base.OnExecuteListener;
 import com.niken.perkembangananak.model.Jadwal;
@@ -30,6 +32,9 @@ public class JadwalViewModel extends BaseViewModel {
         this.listener = listener;
     }
 
+    public void buatJadwal(View view) {
+        BuatJadwalActivity.start(view.getContext());
+    }
 
     public void refresh() {
         getCompositeDisposable().clear();

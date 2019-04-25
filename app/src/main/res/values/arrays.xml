@@ -4,4 +4,8 @@
         <item>Siswa</item>
         <item>Wali Siswa</item>
     </string-array>
+    <string-array name="GuruEntries">
+        <item>Guru A</item>
+        <item>Guru B</item>
+    </string-array>
 </resources>

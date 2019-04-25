@@ -21,6 +21,7 @@ public class Jadwal extends BaseObservable {
     private String C_JADWAL;
     private String C_NAMA;
 
+    private String D_TANGGAL;
     private Date D_TIME;
     private Date D_SELESAI;
     private int C_STATUS;
@@ -127,5 +128,15 @@ public class Jadwal extends BaseObservable {
     public void setGuru(Guru guru) {
         this.guru = guru;
         notifyPropertyChanged(BR.guru);
+    }
+
+    @Bindable
+    public String getD_TANGGAL() {
+        return D_TANGGAL;
+    }
+
+    public void setD_TANGGAL(String d_TANGGAL) {
+        D_TANGGAL = d_TANGGAL;
+        notifyPropertyChanged(BR.d_TANGGAL);
     }
 }

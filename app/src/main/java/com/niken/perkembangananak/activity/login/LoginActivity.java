@@ -21,7 +21,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
     private LoginViewModel viewModel;
 
-    public static void startThisActivity(Context context) {
+    public static void start(Context context) {
         context.startActivity(new Intent(context, LoginActivity.class));
     }
 
@@ -29,7 +29,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     @Override
     public void onExecuted(Boolean result) {
         if (result) {
-            HomeActivity.startThisActivity(this);
+            HomeActivity.start(this);
             finish();
         } else {
             Toast.makeText(this, "Username atau password salah", Toast.LENGTH_SHORT).show();
@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 //        getBinding().getRoot().setBackgroundColor(getColor(R.color.colorPrimary));
         if (viewModel.getSessionHandler().isLogin()) {
             overridePendingTransition(0,0);
-            HomeActivity.startThisActivity(this);
+            HomeActivity.start(this);
             finish();
             return;
         }
