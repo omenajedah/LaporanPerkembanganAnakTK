@@ -2,8 +2,10 @@ package com.niken.perkembangananak.fragment.kelas;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 import com.niken.perkembangananak.Constant;
+import com.niken.perkembangananak.activity.kelas.DetailKelasActivity;
 import com.niken.perkembangananak.base.BaseViewModel;
 import com.niken.perkembangananak.base.OnExecuteListener;
 import com.niken.perkembangananak.model.Kelas;
@@ -30,6 +32,9 @@ public class KelasViewModel extends BaseViewModel {
         this.listener = listener;
     }
 
+    public void buatKelas(View view) {
+        DetailKelasActivity.start(view.getContext(), null);
+    }
 
     public void refresh() {
         getCompositeDisposable().clear();

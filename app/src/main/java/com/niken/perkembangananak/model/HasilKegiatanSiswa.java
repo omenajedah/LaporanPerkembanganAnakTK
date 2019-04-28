@@ -42,4 +42,13 @@ public class HasilKegiatanSiswa extends Jadwal {
         this.siswa = siswa;
         notifyPropertyChanged(BR.siswa);
     }
+
+    @Override
+    public String toString() {
+        return "HasilKegiatanSiswa{" +
+                "C_ABSEN=" + C_ABSEN +
+                ", C_NILAI=" + C_NILAI +
+                ", siswa=" + siswa +
+                '}';
+    }
 }

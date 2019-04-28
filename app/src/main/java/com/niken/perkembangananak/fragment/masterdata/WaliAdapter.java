@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.niken.perkembangananak.activity.wali.DetailWaliActivity;
 import com.niken.perkembangananak.base.BaseRecyclerAdapter;
 import com.niken.perkembangananak.base.BaseViewHolder;
 import com.niken.perkembangananak.databinding.ListWaliBinding;
@@ -43,6 +44,8 @@ public class WaliAdapter extends BaseRecyclerAdapter<Wali> {
         @Override
         public void onBind(int position) {
             binding.setItem(showList.get(position));
+            binding.getRoot().setOnClickListener(v ->
+                    DetailWaliActivity.start(binding.getRoot().getContext(), binding.getItem().getC_USER()));
         }
     }
 }

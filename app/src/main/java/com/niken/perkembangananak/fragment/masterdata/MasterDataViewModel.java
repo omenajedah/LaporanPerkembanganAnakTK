@@ -2,10 +2,13 @@ package com.niken.perkembangananak.fragment.masterdata;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 import androidx.databinding.ObservableInt;
 
 import com.niken.perkembangananak.Constant;
+import com.niken.perkembangananak.activity.siswa.DetailSiswaActivity;
+import com.niken.perkembangananak.activity.wali.DetailWaliActivity;
 import com.niken.perkembangananak.base.BaseViewModel;
 import com.niken.perkembangananak.base.OnExecuteListener;
 import com.niken.perkembangananak.model.Siswa;
@@ -42,6 +45,13 @@ public class MasterDataViewModel extends BaseViewModel {
     public void onMasterSelected(int position) {
         this.selected = position;
         refresh();
+    }
+
+    public void onClick(View view) {
+        if (selected == 0)
+            DetailSiswaActivity.start(getContext(), null);
+        else
+            DetailWaliActivity.start(getContext(), null);
     }
 
     public void refresh() {

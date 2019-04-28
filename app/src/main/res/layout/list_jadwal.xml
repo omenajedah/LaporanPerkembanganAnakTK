@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@{Utils.formatDate(item.d_TIME, `HH:mm`) + ` - ` + Utils.formatDate(item.d_SELESAI, `HH:mm`)}"
+                android:text="@{Utils.formatDate(item.d_MULAI, `HH:mm`) + ` - ` + Utils.formatDate(item.d_SELESAI, `HH:mm`)}"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
                 android:textStyle="bold"

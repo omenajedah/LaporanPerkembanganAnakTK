@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="MasterDataEntries">
-        <item>Siswa</item>
-        <item>Wali Siswa</item>
+        <item>Master Data Siswa</item>
+        <item>Master Data User</item>
     </string-array>
     <string-array name="GuruEntries">
         <item>Guru A</item>

@@ -10,8 +10,6 @@ import java.util.Date;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
-import androidx.databinding.Observable;
-import androidx.databinding.PropertyChangeRegistry;
 
 /**
  * Created by Firman on 4/17/2019.
@@ -21,8 +19,8 @@ public class Jadwal extends BaseObservable {
     private String C_JADWAL;
     private String C_NAMA;
 
-    private String D_TANGGAL;
-    private Date D_TIME;
+    private Date D_TANGGAL;
+    private Date D_MULAI;
     private Date D_SELESAI;
     private int C_STATUS;
     private Kelas kelas;
@@ -32,8 +30,14 @@ public class Jadwal extends BaseObservable {
         Jadwal jadwal = new Jadwal();
         jadwal.setC_JADWAL(jsonObject.optString("C_JADWAL"));
         jadwal.setC_NAMA(jsonObject.optString("C_NAMA"));
+
         try {
-            jadwal.setD_TIME(Utils.parseDate(jsonObject.optString("D_TGL") + " " + jsonObject.optString("D_JAM"), "yyyy-MM-dd HH:mm:ss"));
+            jadwal.setD_TANGGAL(Utils.parseDate(jsonObject.optString("D_TGL"), "yyyy-MM-dd"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            jadwal.setD_MULAI(Utils.parseDate(jsonObject.optString("D_TGL") + " " + jsonObject.optString("D_MULAI"), "yyyy-MM-dd HH:mm:ss"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -81,13 +85,13 @@ public class Jadwal extends BaseObservable {
     }
 
     @Bindable
-    public Date getD_TIME() {
-        return D_TIME;
+    public Date getD_MULAI() {
+        return D_MULAI;
     }
 
-    public void setD_TIME(Date D_TIME) {
-        this.D_TIME = D_TIME;
-        notifyPropertyChanged(BR.d_TIME);
+    public void setD_MULAI(Date d_MULAI) {
+        this.D_MULAI = d_MULAI;
+        notifyPropertyChanged(BR.d_MULAI);
     }
 
     @Bindable
@@ -131,12 +135,26 @@ public class Jadwal extends BaseObservable {
     }
 
     @Bindable
-    public String getD_TANGGAL() {
+    public Date getD_TANGGAL() {
         return D_TANGGAL;
     }
 
-    public void setD_TANGGAL(String d_TANGGAL) {
+    public void setD_TANGGAL(Date d_TANGGAL) {
         D_TANGGAL = d_TANGGAL;
         notifyPropertyChanged(BR.d_TANGGAL);
+    }
+
+    @Override
+    public String toString() {
+        return "Jadwal{" +
+                "C_JADWAL='" + C_JADWAL + '\'' +
+                ", C_NAMA='" + C_NAMA + '\'' +
+                ", D_TANGGAL=" + D_TANGGAL +
+                ", D_MULAI=" + D_MULAI +
+                ", D_SELESAI=" + D_SELESAI +
+                ", C_STATUS=" + C_STATUS +
+                ", kelas=" + kelas +
+                ", guru=" + guru +
+                '}';
     }
 }

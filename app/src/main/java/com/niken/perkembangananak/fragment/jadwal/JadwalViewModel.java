@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.niken.perkembangananak.Constant;
-import com.niken.perkembangananak.activity.buatjadwal.BuatJadwalActivity;
+import com.niken.perkembangananak.activity.jadwal.DetailJadwalActivity;
 import com.niken.perkembangananak.base.BaseViewModel;
 import com.niken.perkembangananak.base.OnExecuteListener;
 import com.niken.perkembangananak.model.Jadwal;
@@ -33,7 +33,7 @@ public class JadwalViewModel extends BaseViewModel {
     }
 
     public void buatJadwal(View view) {
-        BuatJadwalActivity.start(view.getContext());
+        DetailJadwalActivity.start(view.getContext(), null);
     }
 
     public void refresh() {

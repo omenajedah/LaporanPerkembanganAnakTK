@@ -81,4 +81,15 @@ public class Guru extends BaseObservable {
         this.D_TGL_MASUK = D_TGL_MASUK;
         notifyPropertyChanged(BR.d_TGL_MASUK);
     }
+
+    @Override
+    public String toString() {
+        return "Guru{" +
+                "C_NIP='" + C_NIP + '\'' +
+                ", V_NAMA='" + V_NAMA + '\'' +
+                ", C_JENKEL='" + C_JENKEL + '\'' +
+                ", C_STATUS_AJAR='" + C_STATUS_AJAR + '\'' +
+                ", D_TGL_MASUK='" + D_TGL_MASUK + '\'' +
+                '}';
+    }
 }

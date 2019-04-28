@@ -15,7 +15,7 @@ public class Constant {
     public static final String KEY_COOKIES = "COOKIES";
 
     //END POINT
-    private static final String URL = "http://192.168.1.3/perkembangananak";
+    private static final String URL = "http://192.168.43.236/perkembangananak";
 
     public static final String URL_LOGIN = URL + "/login";
     public static final String URL_REGISTRASI = URL + "/registrasi";
@@ -27,12 +27,15 @@ public class Constant {
     public static final String URL_SISWA = URL + "/siswa";
     public static final String URL_HASIL_KEGIATAN = URL + "/hasil";
     public static final String URL_PROFILE = URL + "/profile";
+    public static final String URL_WALI_STATUS = URL + "/wali";
 
-    public static final String URL_CHANGE_JADWAL = URL + "/changejadwal";
-    public static final String URL_CHANGE_KELAS = URL + "/changekelas";
-    public static final String URL_CHANGE_SISWA = URL + "/changesiswa";
-    public static final String URL_CHANGE_HASIL_KEGIATAN = URL + "/changehasilkegiatan";
-    public static final String URL_CHANGE_PROFILE = URL + "/changeprofile";
+
+    public static final String URL_UBAH_JADWAL = URL + "/ubahjadwal";
+    public static final String URL_UBAH_KELAS = URL + "/ubahkelas";
+    public static final String URL_UBAH_SISWA = URL + "/ubahsiswa";
+    public static final String URL_UBAH_HASIL_KEGIATAN = URL + "/ubahhasilkegiatan";
+    public static final String URL_UBAH_PROFILE = URL + "/ubahprofile";
+    public static final String URL_UBAH_STATUS = URL + "/ubahwali";
 
 
     public static final String URL_MANDOR = URL + "/mandor";

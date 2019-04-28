@@ -110,4 +110,17 @@ public class Siswa extends BaseObservable {
         D_TGL_MASUK = d_TGL_MASUK;
         notifyPropertyChanged(BR.d_TGL_MASUK);
     }
+
+    @Override
+    public String toString() {
+        return "Siswa{" +
+                "C_SISWA='" + C_SISWA + '\'' +
+                ", V_NAMA='" + V_NAMA + '\'' +
+                ", D_TGL_LAHIR='" + D_TGL_LAHIR + '\'' +
+                ", C_TEMPAT_LAHIR='" + C_TEMPAT_LAHIR + '\'' +
+                ", C_JENKEL='" + C_JENKEL + '\'' +
+                ", kelas=" + kelas +
+                ", D_TGL_MASUK='" + D_TGL_MASUK + '\'' +
+                '}';
+    }
 }

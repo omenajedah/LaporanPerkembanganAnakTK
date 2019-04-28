@@ -22,7 +22,7 @@ public class HasilKegiatan extends Jadwal{
         kegiatan.setC_JADWAL(jsonObject.optString("C_JADWAL"));
         kegiatan.setC_NAMA(jsonObject.optString("C_NAMA"));
         try {
-            kegiatan.setD_TIME(Utils.parseDate(jsonObject.optString("D_TGL") + " " + jsonObject.optString("D_JAM"), "yyyy-MM-dd HH:mm:ss"));
+            kegiatan.setD_MULAI(Utils.parseDate(jsonObject.optString("D_TGL") + " " + jsonObject.optString("D_MULAI"), "yyyy-MM-dd HH:mm:ss"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -67,5 +67,13 @@ public class HasilKegiatan extends Jadwal{
     public void setN_JML_SISWA(int n_JML_SISWA) {
         N_JML_SISWA = n_JML_SISWA;
         notifyPropertyChanged(BR.n_JML_SISWA);
+    }
+
+    @Override
+    public String toString() {
+        return "HasilKegiatan{" +
+                "N_SISWA_HADIR=" + N_SISWA_HADIR +
+                ", N_JML_SISWA=" + N_JML_SISWA +
+                '}';
     }
 }

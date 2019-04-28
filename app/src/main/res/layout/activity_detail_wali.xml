@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.niken.perkembangananak.activity.siswa.DetailSiswaViewModel" />
+            type="com.niken.perkembangananak.activity.wali.DetailWaliViewModel" />
 
     </data>
 
@@ -51,14 +51,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/label_nama_user"
+                    android:id="@+id/label_username"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:elevation="2dp"
-                    android:hint="Nama Siswa"
+                    android:hint="Username"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -69,137 +69,105 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
-                        android:text="@={vm.siswa.v_NAMA}" />
+                        android:text="@={vm.wali.c_LOGIN}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/label_tempat_lahir"
+                    android:id="@+id/label_fullname"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:elevation="2dp"
-                    android:hint="Tempat Lahir"
-                    app:layout_constraintEnd_toEndOf="@+id/label_nama_user"
+                    android:hint="Nama Lengkap"
+                    app:layout_constraintEnd_toEndOf="@+id/label_username"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/label_nama_user"
-                    app:layout_constraintTop_toBottomOf="@+id/label_nama_user">
+                    app:layout_constraintStart_toStartOf="@+id/label_username"
+                    app:layout_constraintTop_toBottomOf="@+id/label_username">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tempat_lahir_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
-                        android:text="@={vm.siswa.c_TEMPAT_LAHIR}" />
+                        android:text="@={vm.wali.v_NAMA}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/label_tanggal_lahir"
+                    android:id="@+id/label_alamat"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:elevation="2dp"
-                    android:hint="Tanggal Lahir"
-                    app:layout_constraintEnd_toEndOf="@+id/label_tempat_lahir"
+                    android:hint="Alamat"
+                    app:layout_constraintEnd_toEndOf="@+id/label_fullname"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/label_tempat_lahir"
-                    app:layout_constraintTop_toBottomOf="@+id/label_tempat_lahir">
+                    app:layout_constraintStart_toStartOf="@+id/label_fullname"
+                    app:layout_constraintTop_toBottomOf="@+id/label_fullname">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tanggal_lahir_et"
-                        endDrawableClick="@{(v)->vm.setTanggalLahir(tanggalLahirEt)}"
-                        keyListener="@{null}"
+                        android:id="@+id/alamat_et"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_today_black_28"
-                        android:text="@={vm.siswa.d_TGL_LAHIR}" />
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        tools:text="Jln"
+                        android:text="@{vm.wali.v_ALAMAT}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <RadioGroup
-                    android:id="@+id/label_jenkel"
+                    android:id="@+id/label_group"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:checkedButton="@{vm.siswa.c_JENKEL.equals(`L`) ? @id/jenkel_l : @id/jenkel_p}"
+                    android:checkedButton="@{vm.wali.c_GROUP == 1 ? @id/group_guru : @id/group_wali}"
                     android:background="@drawable/bg_radiogroup"
-                    app:layout_constraintEnd_toEndOf="@+id/label_tanggal_lahir"
+                    app:layout_constraintEnd_toEndOf="@+id/label_alamat"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/label_tanggal_lahir"
-                    app:layout_constraintTop_toBottomOf="@+id/label_tanggal_lahir">
+                    app:layout_constraintStart_toStartOf="@+id/label_alamat"
+                    app:layout_constraintTop_toBottomOf="@+id/label_alamat">
 
                     <TextView
                         android:id="@+id/header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
-                        android:text="Jenis Kelamin"
+                        android:text="Group User"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
+                        android:textSize="12sp"
                         android:textAppearance="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox" />
 
                     <RadioButton
-                        android:id="@+id/jenkel_p"
+                        android:id="@+id/group_guru"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="Perempuan" />
+                        android:text="Guru" />
 
                     <RadioButton
-                        android:id="@+id/jenkel_l"
+                        android:id="@+id/group_wali"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="Laki - Laki" />
+                        android:text="Wali Murid" />
 
                 </RadioGroup>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/label_tanggal_masuk"
+                
+                <Switch
+                    android:id="@+id/status_sw"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:elevation="2dp"
-                    android:hint="Tanggal Masuk"
-                    app:layout_constraintEnd_toEndOf="@+id/label_jenkel"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/label_jenkel"
-                    app:layout_constraintTop_toBottomOf="@+id/label_jenkel">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tanggal_masuk_et"
-                        endDrawableClick="@{(v)->vm.setTanggalMasuk(tanggalMasukEt)}"
-                        keyListener="@{null}"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_today_black_28"
-                        android:text="@{vm.siswa.d_TGL_MASUK}"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kelas"
+                    android:text="Status User"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:textColor="@android:color/black"
-                    app:layout_constraintBottom_toBottomOf="@+id/spinner2"
-                    app:layout_constraintStart_toStartOf="@+id/label_tanggal_masuk"
-                    app:layout_constraintTop_toTopOf="@+id/spinner2" />
-
-                <Spinner
-                    android:id="@+id/spinner2"
-                    style="@android:style/Widget.Material.Spinner.Underlined"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:adapter="@{vm.getKelasAdapter()}"
-                    android:onItemSelected="@{vm::onKelasSelected}"
-                    app:layout_constraintEnd_toEndOf="@+id/label_tanggal_masuk"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/label_tanggal_masuk" />
+                    android:checked="@{vm.wali.c_STATUS == 1}"
+                    app:layout_constraintStart_toStartOf="@id/label_group"
+                    app:layout_constraintTop_toBottomOf="@+id/label_group"
+                    app:layout_constraintEnd_toEndOf="@id/label_group"/>
 
                 <Button
                     android:id="@+id/button2"
@@ -207,20 +175,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
-                    android:onClick="@{(v)->vm.saveSiswa()}"
+                    android:onClick="@{(v)->vm.saveWali()}"
                     android:text="Save"
-                    app:layout_constraintEnd_toEndOf="@+id/spinner2"
+                    app:layout_constraintEnd_toEndOf="@+id/status_sw"
                     app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintStart_toStartOf="@+id/spinner2"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner2" />
-
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/barrier"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:barrierDirection="bottom"
-                    app:constraint_referenced_ids="spinner2, button2"
-                    tools:layout_editor_absoluteY="500dp" />
+                    app:layout_constraintStart_toStartOf="@+id/status_sw"
+                    app:layout_constraintTop_toBottomOf="@+id/status_sw" />
 
                 <View
                     android:id="@+id/div"
@@ -231,7 +191,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/barrier" />
+                    app:layout_constraintTop_toBottomOf="@+id/button2" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -240,20 +200,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Hubungan"
-                    app:layout_constraintEnd_toEndOf="@+id/spinner2"
+                    app:layout_constraintEnd_toEndOf="@+id/div"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/textView2"
+                    app:layout_constraintStart_toStartOf="@+id/div"
                     app:layout_constraintTop_toBottomOf="@+id/div" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/listData"
+                    recyclerAdapter="@{}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:nestedScrollingEnabled="false"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/spinner2"
-                    app:layout_constraintStart_toStartOf="@id/textView2"
+                    app:layout_constraintEnd_toEndOf="@id/status_sw"
+                    app:layout_constraintStart_toStartOf="@id/status_sw"
                     app:layout_constraintTop_toBottomOf="@id/textView5"
                     tools:listitem="@layout/list_wali" />
 

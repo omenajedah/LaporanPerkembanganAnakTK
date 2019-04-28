@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.niken.perkembangananak.activity.siswa.DetailSiswaActivity;
 import com.niken.perkembangananak.base.BaseRecyclerAdapter;
 import com.niken.perkembangananak.base.BaseViewHolder;
 import com.niken.perkembangananak.databinding.ListSiswaBinding;
@@ -31,18 +32,21 @@ public class SiswaAdapter extends BaseRecyclerAdapter<Siswa> {
     @Override
     public BaseViewHolder<?> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ListSiswaBinding binding = ListSiswaBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new JadwalViewHolder(binding);
+        return new SiswaViewHolder(binding);
     }
 
-    class JadwalViewHolder extends BaseViewHolder<ListSiswaBinding> {
+    class SiswaViewHolder extends BaseViewHolder<ListSiswaBinding> {
 
-        public JadwalViewHolder(ListSiswaBinding binding) {
+        public SiswaViewHolder(ListSiswaBinding binding) {
             super(binding);
         }
 
         @Override
         public void onBind(int position) {
             binding.setItem(showList.get(position));
+            binding.getRoot().setOnClickListener(v ->
+                    DetailSiswaActivity.start(binding.getRoot().getContext(), showList.get(position).getC_SISWA()));
+
         }
     }
 }

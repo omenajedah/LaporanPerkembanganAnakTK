@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="com.niken.perkembangananak.Utils" />
+
         <variable
             name="vm"
-            type="com.niken.perkembangananak.activity.buatjadwal.BuatJadwalViewModel" />
+            type="com.niken.perkembangananak.activity.jadwal.DetailJadwalViewModel" />
     </data>
 
     <com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout
@@ -58,11 +60,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/title_data">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tempat_lahir_et"
+                    android:id="@+id/nama_kegiatanET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.jadwal.c_NAMA}"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:onTextChanged="@{vm::onNameChanged}"
+                    android:text="@={vm.jadwal.c_NAMA}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,12 +85,11 @@
                     android:id="@+id/tanggal_et"
                     endDrawableClick="@{(v)->vm.setTanggal(tanggalEt)}"
                     keyListener="@{null}"
-                    date
-                    android:text="@={Utils.for}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_today_black_28"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:text="@{Utils.formatDate(vm.jadwal.d_TANGGAL, `dd MMMM yyyy`)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,13 +107,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mulai_et"
-                    endDrawableClick="@{(v)->vm.setMulai(mulaiEt)}"
+                    endDrawableClick="@{(v)->vm.setMulai(tanggalEt)}"
                     keyListener="@{null}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_schedule_28"
                     android:focusable="false"
-                    android:gravity="center_vertical" />
+                    android:gravity="center_vertical"
+                    android:text="@{Utils.formatDate(vm.jadwal.d_MULAI, `HH:mm`)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,13 +133,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/selesai_et"
-                    endDrawableClick="@{(v)->vm.setSelesai(selesaiEt)}"
+                    endDrawableClick="@{(v)->vm.setSelesai(tanggalEt)}"
                     keyListener="@{null}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_schedule_28"
                     android:focusable="false"
-                    android:gravity="center_vertical" />
+                    android:gravity="center_vertical"
+                    android:text="@{Utils.formatDate(vm.jadwal.d_SELESAI, `HH:mm`)}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,9 +162,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:adapter="@{vm.getGuruAdapter()}"
+                android:onItemSelected="@{vm::onGuruSelected}"
                 app:layout_constraintEnd_toEndOf="@+id/label_selesai_kegiatan"
                 app:layout_constraintHorizontal_bias="1.0"
-                android:adapter="@{vm.getGuruAdapter()}"
                 app:layout_constraintStart_toEndOf="@+id/textView1"
                 app:layout_constraintTop_toBottomOf="@+id/label_selesai_kegiatan" />
 
@@ -182,9 +187,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:adapter="@{vm.getKelasAdapter()}"
+                android:onItemSelected="@{vm::onKelasSelected}"
                 app:layout_constraintEnd_toEndOf="@+id/spinner1"
                 app:layout_constraintHorizontal_bias="1.0"
-                android:adapter="@{vm.getGuruAdapter()}"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
@@ -194,6 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
+                android:onClick="@{(v)->vm.saveJadwal()}"
                 android:text="Save"
                 app:layout_constraintEnd_toEndOf="@+id/spinner2"
                 app:layout_constraintTop_toBottomOf="@+id/spinner2" />

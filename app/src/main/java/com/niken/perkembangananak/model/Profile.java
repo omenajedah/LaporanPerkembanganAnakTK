@@ -169,6 +169,15 @@ public class Profile extends BaseObservable implements Observable {
             V_KONTAK = v_KONTAK;
             notifyPropertyChanged(BR.v_KONTAK);
         }
+
+        @Override
+        public String toString() {
+            return "Kontak{" +
+                    "C_USER='" + C_USER + '\'' +
+                    ", C_TIPE='" + C_TIPE + '\'' +
+                    ", V_KONTAK='" + V_KONTAK + '\'' +
+                    '}';
+        }
     }
 
 }

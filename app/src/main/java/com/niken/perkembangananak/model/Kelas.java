@@ -81,5 +81,15 @@ public class Kelas extends BaseObservable {
         this.N_JUMLAH_SISWA = N_JUMLAH_SISWA;
         notifyPropertyChanged(BR.n_JUMLAH_SISWA);
     }
-    
+
+    @Override
+    public String toString() {
+        return "Kelas{" +
+                "C_KELAS='" + C_KELAS + '\'' +
+                ", C_NAMA='" + C_NAMA + '\'' +
+                ", N_TINGKAT=" + N_TINGKAT +
+                ", C_STATUS='" + C_STATUS + '\'' +
+                ", N_JUMLAH_SISWA=" + N_JUMLAH_SISWA +
+                '}';
+    }
 }

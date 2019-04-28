@@ -83,7 +83,7 @@ public class ProfileViewModel extends BaseViewModel {
     }
 
     private Observable<Boolean> saveObservable() {
-        return Rx2AndroidNetworking.post(Constant.URL_CHANGE_PROFILE)
+        return Rx2AndroidNetworking.post(Constant.URL_UBAH_PROFILE)
                 .addBodyParameter(profile)
                 .build()
                 .getJSONObjectObservable()

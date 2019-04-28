@@ -30,11 +30,26 @@
 
         <activity
             android:name=".activity.home.HomeActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".activity.buatjadwal.BuatJadwalActivity"
+            android:name=".activity.jadwal.DetailJadwalActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activity.home.HomeActivity"/>
+        <activity
+            android:name=".activity.kelas.DetailKelasActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activity.home.HomeActivity"/>
+        <activity
+            android:name=".activity.siswa.DetailSiswaActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.home.HomeActivity"/>
+        <activity
+            android:name=".activity.wali.DetailWaliActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop"
             android:parentActivityName=".activity.home.HomeActivity"/>
     </application>
 

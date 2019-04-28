@@ -1,10 +1,9 @@
 package com.niken.perkembangananak.fragment.jadwal;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.niken.perkembangananak.activity.buatjadwal.BuatJadwalActivity;
+import com.niken.perkembangananak.activity.jadwal.DetailJadwalActivity;
 import com.niken.perkembangananak.base.BaseRecyclerAdapter;
 import com.niken.perkembangananak.base.BaseViewHolder;
 import com.niken.perkembangananak.databinding.ListJadwalBinding;
@@ -45,7 +44,7 @@ public class JadwalAdapter extends BaseRecyclerAdapter<Jadwal> {
         @Override
         public void onBind(int position) {
             binding.setItem(showList.get(position));
-            binding.cardView.setOnClickListener(v -> BuatJadwalActivity.start(v.getContext()));
+            binding.cardView.setOnClickListener(v -> DetailJadwalActivity.start(v.getContext(), showList.get(position).getC_JADWAL()));
         }
     }
 }

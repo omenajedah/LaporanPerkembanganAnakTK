@@ -3,6 +3,7 @@ package com.niken.perkembangananak.fragment.kelas;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.niken.perkembangananak.activity.kelas.DetailKelasActivity;
 import com.niken.perkembangananak.base.BaseRecyclerAdapter;
 import com.niken.perkembangananak.base.BaseViewHolder;
 import com.niken.perkembangananak.databinding.ListKelasBinding;
@@ -43,6 +44,7 @@ public class KelasAdapter extends BaseRecyclerAdapter<Kelas> {
         @Override
         public void onBind(int position) {
             binding.setItem(showList.get(position));
+            binding.getRoot().setOnClickListener(v -> DetailKelasActivity.start(binding.getRoot().getContext(), showList.get(position).getC_KELAS()));
         }
     }
 }
